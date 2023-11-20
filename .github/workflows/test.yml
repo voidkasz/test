@@ -1,0 +1,26 @@
+name: Exade - VPS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+
+    
+    steps:
+      - name: Downloading & Installing Essentials
+        run: |
+          Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/ugm8ks4638bour5oa67o6/downloads.bat?rlkey=j4silzru794uqcsxkqv4c13jr&dl=1" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
+          Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/f61r7jgr30h1bqczjnn15/wallpaper.bat?rlkey=722i4jyh86koh81o3fnzf7rgz&dl=1" -OutFile "Wallpaper.bat"
+          cmd /c Wallpaper.bat
+          Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/mc457xbyzbi0qxa3fx67v/changewallpaper.bat?rlkey=xcldvrihcs2kqunqlwml2mbb4&dl=1" -OutFile "ChangeWallpaper.bat"
+          cmd /c ChangeWallpaper.bat
+
+      - name: Log In To AnyDesk
+        run: cmd /c show.bat
+
+      - name: Time Counter
+        run: python time.py
